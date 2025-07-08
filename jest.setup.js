@@ -1,0 +1,1 @@
+// Setup Jest (ajoute des mocks globaux ici si besoin) 

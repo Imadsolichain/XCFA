@@ -1,61 +1,74 @@
-# TypeScript Next.js example
+# XCFA - Socle technique
 
-This is a really simple project that shows the usage of Next.js with TypeScript.
+## Stack
+- Next.js (TypeScript)
+- Tailwind CSS
+- Prisma ORM
+- PostgreSQL (Docker ou local)
+- Clerk (authentification)
+- Jest (tests d'intégration)
 
-## Deploy your own
+## Fonctionnalités principales
+- Authentification sécurisée (Clerk)
+- Gestion des rôles (CFA, entreprise, apprenant, etc.)
+- Modèles métiers : User, CFA, Entreprise, Apprenant, Contrat, Convention, Evenement (logs), Notification
+- API RESTful pour tous les objets métiers
+- Pages protégées par rôle (dashboard, contrats, conventions, etc.)
+- Layout global réutilisable (Sidebar, Header)
+- Mock d'envoi d'e-mail et de signature électronique (Sendinblue/SendGrid, Yousign)
+- Tests d'intégration Jest (API)
+- Page RGPD / Politique de confidentialité
 
-[![Deploy with Vercel](https://vercel.com/button)](https://vercel.com/new/clone?repository-url=https://github.com/vercel/next.js/tree/canary/examples/with-typescript&project-name=with-typescript&repository-name=with-typescript)
+## Installation
+1. Clone le repo et va dans le dossier :
+   ```bash
+   cd my-app
+   ```
+2. Installe les dépendances :
+   ```bash
+   npm install
+   ```
+3. Configure le fichier `.env` :
+   ```env
+   DATABASE_URL=postgresql://postgres:postgres@localhost:5432/xcfa
+   NEXT_PUBLIC_CLERK_PUBLISHABLE_KEY=your-clerk-publishable-key
+   CLERK_SECRET_KEY=your-clerk-secret-key
+   ```
+4. (Optionnel) Lance PostgreSQL avec Docker :
+   ```bash
+   docker-compose up -d
+   ```
+5. Applique les migrations Prisma :
+   ```bash
+   npx prisma migrate dev --name init
+   ```
+6. Démarre le serveur :
+   ```bash
+   npm run dev
+   ```
+7. Lance les tests :
+   ```bash
+   npx jest
+   ```
 
-## How to use it?
+## Structure des dossiers
+- `/pages` : pages Next.js (publiques et privées)
+- `/components` : UI réutilisable (Layout, Sidebar, Header)
+- `/prisma` : schéma et migrations Prisma
+- `/lib` : services (e-mail, signature, etc.)
+- `/__tests__` : tests d'intégration Jest
 
-Execute [`create-next-app`](https://github.com/vercel/next.js/tree/canary/packages/create-next-app) with [npm](https://docs.npmjs.com/cli/init), [Yarn](https://yarnpkg.com/lang/en/docs/cli/create/), or [pnpm](https://pnpm.io) to bootstrap the example:
+## RGPD
+- Page `/privacy` accessible à tous
+- Logs d'activité via le modèle Evenement
+- Consentement à ajouter à l'inscription si besoin
 
-```bash
-npx create-next-app --example with-typescript with-typescript-app
-```
+## Pour aller plus loin
+- Ajouter des tests front-end (Playwright, Cypress)
+- Déployer sur Vercel, Render ou autre
+- Intégrer un vrai provider e-mail et signature
+- Ajouter la gestion fine des droits par rôle
 
-```bash
-yarn create next-app --example with-typescript with-typescript-app
-```
+---
 
-```bash
-pnpm create next-app --example with-typescript with-typescript-app
-```
-
-Deploy it to the cloud with [Vercel](https://vercel.com/new?utm_source=github&utm_medium=readme&utm_campaign=next-example) ([Documentation](https://nextjs.org/docs/deployment)).
-
-## Notes
-
-This example shows how to integrate the TypeScript type system into Next.js. Since TypeScript is supported out of the box with Next.js, all we have to do is to install TypeScript.
-
-```shell
-npm install --save-dev typescript
-```
-
-```shell
-yarn install --save-dev typescript
-```
-
-```shell
-pnpm install --save-dev typescript
-```
-
-To enable TypeScript's features, we install the type declarations for React and Node.
-
-```shell
-npm install --save-dev @types/react @types/react-dom @types/node
-```
-
-```shell
-yarn install --save-dev @types/react @types/react-dom @types/node
-```
-
-```shell
-pnpm install --save-dev @types/react @types/react-dom @types/node
-```
-
-When we run `next dev` the next time, Next.js will start looking for any `.ts` or `.tsx` files in our project and builds it. It even automatically creates a `tsconfig.json` file for our project with the recommended settings.
-
-Next.js has built-in TypeScript declarations, so we'll get autocompletion for Next.js' modules straight away.
-
-A `type-check` script is also added to `package.json`, which runs TypeScript's `tsc` CLI in `noEmit` mode to run type-checking separately. You can then include this, for example, in your `test` scripts.
+Développé avec ❤️ pour le MVP XCFA
