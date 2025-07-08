@@ -1,3 +1,4 @@
+// Forcer le redeploiement Vercel - test assistant
 import { useRouter } from 'next/router';
 import { useEffect } from 'react';
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
