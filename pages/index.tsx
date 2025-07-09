@@ -1,37 +1,30 @@
-// Forcer le redeploiement Vercel - test assistant
-import { useRouter } from 'next/router';
-import { useEffect } from 'react';
+import React from 'react';
+import Layout from '../components/Layout';
+import Image from 'next/image';
+import Link from 'next/link';
 import { SignedIn, SignedOut, SignInButton, SignUpButton } from '@clerk/nextjs';
 
 export default function HomePage() {
-  const router = useRouter();
-  useEffect(() => {
-    // Redirige automatiquement si connecté
-    // (optionnel, peut être retiré si tu veux une vraie page d'accueil)
-  }, [router]);
-
   return (
-    <div className="flex flex-col items-center justify-center min-h-screen bg-gray-50">
-      <SignedIn>
-        <div className="text-2xl font-bold mb-4">Bienvenue sur XCFA !</div>
-        <button
-          className="bg-blue-600 text-white px-4 py-2 rounded"
-          onClick={() => router.push('/dashboard')}
-        >
-          Accéder au dashboard
-        </button>
-      </SignedIn>
-      <SignedOut>
-        <div className="text-2xl font-bold mb-4">Bienvenue sur XCFA !</div>
-        <div className="flex gap-4">
-          <SignInButton>
-            <button className="bg-blue-600 text-white px-4 py-2 rounded">Se connecter</button>
-          </SignInButton>
-          <SignUpButton>
-            <button className="bg-gray-200 text-gray-900 px-4 py-2 rounded">Créer un compte</button>
-          </SignUpButton>
-        </div>
-      </SignedOut>
-    </div>
+    <Layout title="Accueil">
+      <div className="flex flex-col items-center justify-center min-h-[70vh]">
+        <Image src="/logo-xcfa.png" alt="Logo XCFA" width={80} height={80} className="mb-4" />
+        <h1 className="text-4xl font-extrabold text-[#2F5FDE] mb-2">Bienvenue sur XCFA</h1>
+        <p className="text-lg text-[#333333] mb-6">La plateforme moderne pour la gestion des contrats et conventions d'alternance.</p>
+        <SignedOut>
+          <div className="flex gap-4">
+            <SignInButton>
+              <button className="bg-[#2F5FDE] text-white px-6 py-2 rounded font-semibold shadow hover:bg-[#1e3a8a] transition">Se connecter</button>
+            </SignInButton>
+            <SignUpButton>
+              <button className="bg-white text-[#2F5FDE] border border-[#2F5FDE] px-6 py-2 rounded font-semibold shadow hover:bg-[#E9F0FF] transition">Créer un compte</button>
+            </SignUpButton>
+          </div>
+        </SignedOut>
+        <SignedIn>
+          <Link href="/dashboard" className="bg-[#2F5FDE] text-white px-6 py-2 rounded font-semibold shadow hover:bg-[#1e3a8a] transition">Accéder au dashboard</Link>
+        </SignedIn>
+      </div>
+    </Layout>
   );
 }
