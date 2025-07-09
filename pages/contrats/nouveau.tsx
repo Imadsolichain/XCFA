@@ -18,7 +18,14 @@ export default function NouveauContratPage() {
       const res = await fetch('/api/contrats', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user?.id, type, statut }),
+        body: JSON.stringify({
+          userId: user?.id,
+          email: user?.primaryEmailAddress?.emailAddress,
+          firstname: user?.firstName,
+          lastname: user?.lastName,
+          type,
+          statut,
+        }),
       });
       if (!res.ok) throw new Error('Erreur lors de la création');
       setSubmitted(true);
