@@ -1,3 +1,4 @@
+import React from 'react';
 import { withRole } from '../../utils/withRole';
 import { useRouter } from 'next/router';
 import { useEffect, useState } from 'react';
@@ -20,11 +21,11 @@ function ContratDetailPage() {
     }
   }, [id]);
 
-  if (loading) return <Layout>Chargement...</Layout>;
-  if (!contrat) return <Layout>Contrat introuvable</Layout>;
+  if (loading) return <Layout title="Chargement"><div>Chargement...</div></Layout>;
+  if (!contrat) return <Layout title="Contrat introuvable"><div>Contrat introuvable</div></Layout>;
 
   return (
-    <Layout>
+    <Layout title="Contrat">
       <h1 className="text-2xl font-bold mb-4">Contrat #{contrat.id}</h1>
       <div className="mb-2">Type : {contrat.type}</div>
       <div className="mb-2">Statut : {contrat.statut}</div>

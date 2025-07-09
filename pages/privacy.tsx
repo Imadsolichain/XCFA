@@ -1,8 +1,9 @@
+import React from 'react';
 import Layout from '../components/Layout';
 
 export default function PrivacyPage() {
   return (
-    <Layout>
+    <Layout title="Confidentialité">
       <h1 className="text-2xl font-bold mb-4">Politique de confidentialité</h1>
       <p className="mb-2">Cette application respecte le RGPD. Vos données sont stockées de façon sécurisée et ne sont jamais revendues à des tiers.</p>
       <ul className="list-disc pl-6 mb-2">

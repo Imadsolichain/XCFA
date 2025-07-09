@@ -1,14 +1,14 @@
-import React from 'react';
+import React, { ReactNode } from 'react';
 
 type LayoutProps = {
-  children: any;
+  children: ReactNode;
   title: string;
 };
 
 const Layout = ({ children, title }: LayoutProps) => (
   <div>
     <h2>{title}</h2>
-    {children}
+    {Array.isArray(children) ? children.map((child, i) => (typeof child === 'object' && child !== null ? child : <span key={i}>{String(child)}</span>)) : children}
   </div>
 );
 

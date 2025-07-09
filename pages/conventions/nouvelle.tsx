@@ -1,11 +1,10 @@
-import { withRole } from '../../utils/withRole';
-import Layout from '../../components/Layout';
-import { useState } from 'react';
+import React, { useState } from 'react';
 import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
+import Layout from '../../components/Layout';
 
-function NouvelleConventionPage() {
+export default function NouvelleConventionPage() {
   const { user } = useUser();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
@@ -33,7 +32,7 @@ function NouvelleConventionPage() {
   }
 
   return (
-    <Layout>
+    <Layout title="Nouvelle convention">
       <h1 className="text-2xl font-bold mb-4">Nouvelle convention de stage</h1>
       {submitted ? (
         <div className="p-4 bg-green-100 rounded">Convention créée !</div>
@@ -49,6 +48,4 @@ function NouvelleConventionPage() {
       )}
     </Layout>
   );
-}
-
-export default withRole(NouvelleConventionPage, ['CFA_ADMIN', 'APPRENANT']); 
+} 

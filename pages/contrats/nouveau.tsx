@@ -1,14 +1,12 @@
+import React, { useState } from 'react';
 import Layout from '../../components/Layout';
 import { SignedIn, SignedOut, RedirectToSignIn, useUser } from '@clerk/nextjs';
-import { useState } from 'react';
-import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 
 export default function NouveauContratPage() {
   const { user } = useUser();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
-  const router = useRouter();
 
   async function handleSubmit(e: React.FormEvent<HTMLFormElement>) {
     e.preventDefault();
@@ -25,7 +23,6 @@ export default function NouveauContratPage() {
       if (!res.ok) throw new Error('Erreur lors de la création');
       setSubmitted(true);
       toast.success('Contrat créé !');
-      setTimeout(() => router.push('/dashboard'), 1200);
     } catch (err) {
       setError('Erreur lors de la création du contrat');
       toast.error('Erreur lors de la création du contrat');
@@ -33,7 +30,7 @@ export default function NouveauContratPage() {
   }
 
   return (
-    <Layout>
+    <Layout title="Nouveau contrat">
       <SignedIn>
         <h1 className="text-2xl font-bold mb-4">Nouveau contrat d'alternance</h1>
         {submitted ? (

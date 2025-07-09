@@ -1,28 +1,28 @@
+import React, { useEffect, useState } from 'react';
 import Layout from '../components/Layout';
 import { SignedIn, SignedOut, RedirectToSignIn, useUser } from '@clerk/nextjs';
 import Link from 'next/link';
-import { useEffect, useState } from 'react';
 
 export default function DashboardPage() {
   const { user } = useUser();
-  const [contrats, setContrats] = useState<any[]>([]);
-  const [conventions, setConventions] = useState<any[]>([]);
+  const [contrats, setContrats] = useState([]);
+  const [conventions, setConventions] = useState([]);
   const [loading, setLoading] = useState(true);
 
   useEffect(() => {
-    if (user) {
-      fetch(`/api/contrats-user?userId=${user.id}`)
-        .then(res => res.json())
-        .then(data => setContrats(data));
-      fetch(`/api/conventions-user?userId=${user.id}`)
-        .then(res => res.json())
-        .then(data => setConventions(data));
+    async function fetchData() {
+      setLoading(true);
+      const resContrats = await fetch('/api/contrats-user');
+      const resConventions = await fetch('/api/conventions-user');
+      setContrats(await resContrats.json());
+      setConventions(await resConventions.json());
       setLoading(false);
     }
-  }, [user]);
+    fetchData();
+  }, []);
 
   return (
-    <Layout>
+    <Layout title="Dashboard">
       <SignedIn>
         <h1 className="text-2xl font-bold mb-4">Tableau de bord</h1>
         <div className="mb-6">
