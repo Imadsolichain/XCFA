@@ -1,15 +1,15 @@
-import Sidebar from './Sidebar';
-import Header from './Header';
-import { ReactNode } from 'react';
+import React from 'react';
 
-export default function Layout({ children }: { children: ReactNode }) {
-  return (
-    <div className="flex h-screen">
-      <Sidebar />
-      <div className="flex-1 flex flex-col">
-        <Header />
-        <main className="flex-1 bg-gray-50 p-6 overflow-auto">{children}</main>
-      </div>
-    </div>
-  );
-}
+type LayoutProps = {
+  children: any;
+  title: string;
+};
+
+const Layout = ({ children, title }: LayoutProps) => (
+  <div>
+    <h2>{title}</h2>
+    {children}
+  </div>
+);
+
+export default Layout;
