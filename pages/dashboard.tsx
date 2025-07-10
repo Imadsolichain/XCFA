@@ -9,6 +9,8 @@ export default function DashboardPage() {
   const [contrats, setContrats] = useState([]);
   const [conventions, setConventions] = useState([]);
   const [loading, setLoading] = useState(true);
+  const [signatureLinks, setSignatureLinks] = useState({});
+  const [signatureStatus, setSignatureStatus] = useState({});
 
   useEffect(() => {
     async function fetchData() {
@@ -63,6 +65,28 @@ export default function DashboardPage() {
         </div>
         <div className="flex items-center gap-3">
           <span className={`px-3 py-1 rounded-full text-xs font-bold ${c.statut === 'signé' ? 'bg-[#E9F0FF] text-[#2F5FDE]' : 'bg-gray-200 text-gray-600'}`}>{c.statut}</span>
+          {/* Bouton signature électronique */}
+          <button
+            className="flex items-center gap-1 px-3 py-1 rounded-lg bg-[#12B76A] text-white font-medium text-xs hover:bg-green-700 transition border border-[#12B76A]"
+            onClick={async () => {
+              const res = await fetch('/api/signature', {
+                method: 'POST',
+                headers: { 'Content-Type': 'application/json' },
+                body: JSON.stringify({ contractId: c.id })
+              });
+              const data = await res.json();
+              setSignatureLinks((prev) => ({ ...prev, [c.id]: data.signatureUrl }));
+              setSignatureStatus((prev) => ({ ...prev, [c.id]: data.status }));
+            }}
+          >Signer électroniquement</button>
+          {/* Affichage du lien ou statut de signature */}
+          {signatureLinks[c.id] && (
+            <a href={signatureLinks[c.id]} target="_blank" rel="noopener noreferrer" className="text-xs text-[#2F5FDE] underline ml-2">Lien de signature</a>
+          )}
+          {signatureStatus[c.id] && (
+            <span className="ml-2 text-xs text-gray-500">Statut : {signatureStatus[c.id]}</span>
+          )}
+          {/* Boutons PDF */}
           <button
             title="Aperçu"
             className="flex items-center gap-1 px-3 py-1 rounded-lg bg-[#E9F0FF] text-[#2F5FDE] font-medium text-xs hover:bg-[#dbeafe] transition border border-[#E9F0FF]"
