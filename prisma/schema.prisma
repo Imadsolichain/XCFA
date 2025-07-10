@@ -1,12 +1,5 @@
-// This is your Prisma schema file,
-// learn more about it in the docs: https://pris.ly/d/prisma-schema
-
-// Looking for ways to speed up your queries, or scale easily with your serverless or edge functions?
-// Try Prisma Accelerate: https://pris.ly/cli/accelerate-init
-
 generator client {
   provider = "prisma-client-js"
-  // output   = "../generated/prisma"
 }
 
 datasource db {
@@ -15,79 +8,78 @@ datasource db {
 }
 
 model User {
-  id        String   @id @default(cuid())
-  email     String   @unique
-  firstname String
-  lastname  String
-  role      Role     @default(CFA_ADMIN)
-  createdAt DateTime @default(now())
-  // Relations
-  cfa        CFA?      @relation(fields: [cfaId], references: [id])
-  cfaId      String?
-  entreprise Entreprise? @relation(fields: [entrepriseId], references: [id])
-  entrepriseId String?
-  apprenant  Apprenant?
-  contrats   Contrat[]
-  conventions Convention[]
+  id            String         @id @default(cuid())
+  email         String         @unique
+  firstname     String
+  lastname      String
+  role          Role           @default(CFA_ADMIN)
+  createdAt     DateTime       @default(now())
+  cfaId         String?
+  entrepriseId  String?
+  apprenant     Apprenant?
+  contrats      Contrat[]
+  conventions   Convention[]
+  evenements    Evenement[]
   notifications Notification[]
-  evenements Evenement[]
+  cfa           CFA?           @relation(fields: [cfaId], references: [id])
+  entreprise    Entreprise?    @relation(fields: [entrepriseId], references: [id])
 }
 
 model CFA {
-  id      String   @id @default(cuid())
-  name    String
-  users   User[]
+  id        String   @id @default(cuid())
+  name      String
   createdAt DateTime @default(now())
+  users     User[]
 }
 
 model Entreprise {
-  id      String   @id @default(cuid())
-  name    String
-  users   User[]
+  id        String   @id @default(cuid())
+  name      String
   createdAt DateTime @default(now())
+  users     User[]
 }
 
 model Apprenant {
-  id      String   @id @default(cuid())
-  user    User     @relation(fields: [userId], references: [id])
-  userId  String   @unique
+  id            String    @id @default(cuid())
+  userId        String    @unique
   dateNaissance DateTime?
-  createdAt DateTime @default(now())
+  createdAt     DateTime  @default(now())
+  user          User      @relation(fields: [userId], references: [id])
 }
 
 model Contrat {
   id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
   userId    String
   type      String
   statut    String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Convention {
   id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
   userId    String
   sujet     String
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 model Evenement {
   id        String   @id @default(cuid())
   type      String
   message   String
-  user      User?    @relation(fields: [userId], references: [id])
   userId    String?
   createdAt DateTime @default(now())
+  user      User?    @relation(fields: [userId], references: [id])
 }
 
 model Notification {
   id        String   @id @default(cuid())
-  user      User     @relation(fields: [userId], references: [id])
   userId    String
   message   String
   lu        Boolean  @default(false)
   createdAt DateTime @default(now())
+  user      User     @relation(fields: [userId], references: [id])
 }
 
 enum Role {

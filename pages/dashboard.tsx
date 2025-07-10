@@ -52,36 +52,36 @@ export default function DashboardPage() {
           <div>
             <h2 className="text-xl font-semibold mb-4 text-[#333333]">Mes contrats</h2>
             <div className="bg-white rounded-xl shadow p-4">
-              {loading ? 'Chargement...' : (
-                <ul className="divide-y divide-[#E9F0FF]">
-                  {contrats.length === 0 && <li className="py-4 text-gray-400">Aucun contrat</li>}
-                  {contrats.map((c) => (
-                    <li key={c.id} className="py-4 flex items-center justify-between">
-                      <div>
-                        <Link href={`/contrats/${c.id}`} className="text-[#2F5FDE] font-semibold hover:underline">Contrat #{c.id}</Link>
-                        <span className="ml-2 text-gray-500">{c.type}</span>
-                      </div>
-                      <span className={`px-3 py-1 rounded-full text-xs font-bold ${c.statut === 'signé' ? 'bg-[#E9F0FF] text-[#2F5FDE]' : 'bg-gray-200 text-gray-600'}`}>{c.statut}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+          {loading ? 'Chargement...' : (
+  <ul className="divide-y divide-[#E9F0FF]">
+    {(!Array.isArray(contrats) || contrats.length === 0) && <li className="py-4 text-gray-400">Aucun contrat</li>}
+    {Array.isArray(contrats) && contrats.map((c) => (
+      <li key={c.id} className="py-4 flex items-center justify-between">
+        <div>
+          <Link href={`/contrats/${c.id}`} className="text-[#2F5FDE] font-semibold hover:underline">Contrat #{c.id}</Link>
+          <span className="ml-2 text-gray-500">{c.type}</span>
+        </div>
+        <span className={`px-3 py-1 rounded-full text-xs font-bold ${c.statut === 'signé' ? 'bg-[#E9F0FF] text-[#2F5FDE]' : 'bg-gray-200 text-gray-600'}`}>{c.statut}</span>
+      </li>
+    ))}
+  </ul>
+)}
             </div>
-          </div>
-          <div>
+        </div>
+        <div>
             <h2 className="text-xl font-semibold mb-4 text-[#333333]">Mes conventions</h2>
             <div className="bg-white rounded-xl shadow p-4">
-              {loading ? 'Chargement...' : (
-                <ul className="divide-y divide-[#E9F0FF]">
-                  {conventions.length === 0 && <li className="py-4 text-gray-400">Aucune convention</li>}
-                  {conventions.map((c) => (
-                    <li key={c.id} className="py-4 flex items-center justify-between">
-                      <span className="font-semibold text-[#2F5FDE]">{c.sujet}</span>
-                      <span className="text-gray-500">{new Date(c.createdAt).toLocaleDateString()}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
+          {loading ? 'Chargement...' : (
+  <ul className="divide-y divide-[#E9F0FF]">
+    {(!Array.isArray(conventions) || conventions.length === 0) && <li className="py-4 text-gray-400">Aucune convention</li>}
+    {Array.isArray(conventions) && conventions.map((c) => (
+      <li key={c.id} className="py-4 flex items-center justify-between">
+        <span className="font-semibold text-[#2F5FDE]">{c.sujet}</span>
+        <span className="text-gray-500">{new Date(c.createdAt).toLocaleDateString()}</span>
+      </li>
+    ))}
+  </ul>
+)}
             </div>
           </div>
         </div>

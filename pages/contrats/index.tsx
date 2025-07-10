@@ -38,12 +38,12 @@ export default function ContratsListPage() {
                 </tr>
               </thead>
               <tbody>
-                {contrats.length === 0 && (
+                {(!Array.isArray(contrats) || contrats.length === 0) && (
                   <tr>
                     <td colSpan={4} className="text-center text-gray-400 py-6">Aucun contrat</td>
                   </tr>
                 )}
-                {contrats.map((c) => (
+                {Array.isArray(contrats) && contrats.map((c) => (
                   <tr key={c.id} className="hover:bg-[#E9F0FF] transition">
                     <td className="px-4 py-2 font-semibold text-[#2F5FDE]">{c.id}</td>
                     <td className="px-4 py-2">{c.type}</td>
