@@ -16,7 +16,7 @@ export default function Sidebar() {
   return (
     <aside className="w-64 h-screen bg-[#2F5FDE] text-white flex flex-col p-6 fixed md:relative z-20 shadow-xl rounded-r-3xl">
       <div className="flex items-center gap-3 mb-10">
-        <Image src="/logo-xcfa.png" alt="Logo XCFA" width={40} height={40} className="rounded shadow bg-white p-1" />
+        <Image src="/logo-xcfa.svg" alt="Logo XCFA" width={40} height={40} className="rounded shadow bg-white p-1" />
         <span className="text-2xl font-extrabold tracking-tight">XCFA</span>
       </div>
       <nav className="flex flex-col gap-3 flex-1">

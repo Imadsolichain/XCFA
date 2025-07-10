@@ -11,7 +11,7 @@ export default function HomePage() {
       <div className="flex items-center justify-center min-h-screen bg-[#F4F6F8]">
         <div className="bg-white/90 rounded-3xl shadow-2xl p-12 flex flex-col items-center w-full max-w-xl transition-transform hover:-translate-y-1 hover:shadow-3xl duration-300 border border-[#E9F0FF]">
           {!logoError ? (
-            <Image src="/logo-xcfa.png" alt="Logo XCFA" width={90} height={90} className="mb-6 rounded-xl shadow bg-white" onError={() => setLogoError(true)} />
+            <Image src="/logo-xcfa.svg" alt="Logo XCFA" width={90} height={90} className="mb-6 rounded-xl shadow bg-white" onError={() => setLogoError(true)} />
           ) : (
             <div className="mb-6 w-[90px] h-[90px] flex items-center justify-center bg-[#E9F0FF] rounded-xl text-[#2F5FDE] text-4xl font-bold">XCFA</div>
           )}
