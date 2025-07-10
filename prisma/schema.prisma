@@ -60,6 +60,7 @@ model Convention {
   id        String   @id @default(cuid())
   userId    String
   sujet     String
+  statut    String   @default("brouillon") // Ajouté pour suivi signature/relances
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
 }

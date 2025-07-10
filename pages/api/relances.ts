@@ -21,5 +21,17 @@ export default async function handler(req: NextApiRequest, res: NextApiResponse)
       relances.push({ type: 'contrat', id: c.id, email: c.user.email });
     }
   }
+  // Conventions non signées
+  const conventions = await prisma.convention.findMany({ where: { statut: { not: 'signé' } }, include: { user: true } });
+  for (const c of conventions) {
+    if (c.user?.email) {
+      await sendEmail({
+        to: c.user.email,
+        subject: 'Relance signature convention',
+        text: `Merci de signer la convention #${c.id} sur XCFA.`
+      });
+      relances.push({ type: 'convention', id: c.id, email: c.user.email });
+    }
+  }
   res.status(200).json({ relances });
 } 

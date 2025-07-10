@@ -19,7 +19,7 @@ export default function NouvelleConventionPage() {
       const res = await fetch('/api/conventions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user?.id, sujet }),
+        body: JSON.stringify({ userId: user?.id, sujet, statut: 'brouillon' }),
       });
       if (!res.ok) throw new Error('Erreur lors de la création');
       setSubmitted(true);
