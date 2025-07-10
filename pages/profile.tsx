@@ -1,0 +1,62 @@
+import React from 'react';
+import Layout from '../components/Layout';
+import { useUser, UserButton, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
+
+function SectionEtudiant({ user }: { user: any }) {
+  return (
+    <div className="bg-[#E9F0FF] rounded-xl shadow p-6 w-full max-w-lg mx-auto mb-6">
+      <h3 className="text-xl font-bold text-[#2F5FDE] mb-2">Espace Étudiant</h3>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Nom :</span> {user?.lastName} {user?.firstName}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Email :</span> {user?.primaryEmailAddress?.emailAddress}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">ID :</span> {user?.id}</div>
+      <div className="text-gray-700"><span className="font-semibold">Rôle :</span> Étudiant</div>
+    </div>
+  );
+}
+
+function SectionEcole({ user }: { user: any }) {
+  return (
+    <div className="bg-[#F4F6F8] rounded-xl shadow p-6 w-full max-w-lg mx-auto mb-6">
+      <h3 className="text-xl font-bold text-[#2F5FDE] mb-2">Espace École</h3>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Nom :</span> {user?.lastName} {user?.firstName}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Email :</span> {user?.primaryEmailAddress?.emailAddress}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">ID :</span> {user?.id}</div>
+      <div className="text-gray-700"><span className="font-semibold">Rôle :</span> École</div>
+    </div>
+  );
+}
+
+function SectionAdmin({ user }: { user: any }) {
+  return (
+    <div className="bg-white rounded-xl shadow p-6 w-full max-w-lg mx-auto mb-6 border border-[#2F5FDE]">
+      <h3 className="text-xl font-bold text-[#2F5FDE] mb-2">Espace Admin</h3>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Nom :</span> {user?.lastName} {user?.firstName}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">Email :</span> {user?.primaryEmailAddress?.emailAddress}</div>
+      <div className="text-gray-700 mb-1"><span className="font-semibold">ID :</span> {user?.id}</div>
+      <div className="text-gray-700"><span className="font-semibold">Rôle :</span> Admin</div>
+    </div>
+  );
+}
+
+export default function ProfilePage() {
+  const { user } = useUser();
+  const role = user?.publicMetadata?.role as string;
+  return (
+    <Layout title="Profil">
+      <SignedIn>
+        <div className="max-w-2xl mx-auto flex flex-col items-center mt-10">
+          <UserButton afterSignOutUrl="/login" />
+          <h2 className="text-2xl font-bold text-[#2F5FDE] mt-4 mb-6">Mon profil</h2>
+          {role === 'APPRENANT' && <SectionEtudiant user={user} />}
+          {role === 'ECOLE' && <SectionEcole user={user} />}
+          {role === 'ADMIN' && <SectionAdmin user={user} />}
+          {!role && <div className="text-red-600">Aucun rôle défini pour cet utilisateur.</div>}
+          <button onClick={() => window.location.href = '/login'} className="mt-6 bg-[#EF4444] text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition-all duration-200">Se déconnecter</button>
+        </div>
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </Layout>
+  );
+} 
