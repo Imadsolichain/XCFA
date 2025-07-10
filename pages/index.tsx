@@ -6,7 +6,7 @@ import Link from 'next/link';
 export default function HomePage() {
   return (
     <Layout title="Accueil">
-      <div className="min-h-screen flex items-center justify-center bg-gradient-to-tr from-[#E9F0FF] via-[#F4F6F8] to-[#2F5FDE]">
+      <div className="min-h-screen flex items-center justify-center bg-[#F4F6F8]">
         <div className="flex flex-col md:flex-row items-center justify-between w-full max-w-5xl gap-12 p-8">
           {/* Illustration à gauche */}
           <div className="flex-1 flex items-center justify-center">

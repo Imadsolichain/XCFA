@@ -14,7 +14,7 @@ export default function Sidebar() {
     { href: '/profile', label: 'Profil', icon: <UserIcon className="h-5 w-5" /> },
   ];
   return (
-    <aside className="w-64 h-screen bg-[#2F5FDE] text-white flex flex-col p-6 fixed md:relative z-20 shadow-xl rounded-r-3xl">
+    <aside className="w-64 h-screen bg-[#2F5FDE] text-white flex flex-col p-6 fixed md:relative z-20 shadow-xl">
       <div className="w-20 h-20 flex items-center justify-center bg-white rounded-2xl shadow mb-10 mx-auto">
         <Image src="/logo-xcfa.png" alt="Logo XCFA" width={56} height={56} />
       </div>
