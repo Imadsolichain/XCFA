@@ -30,6 +30,29 @@ export default function NouveauContratPage() {
       if (!res.ok) throw new Error('Erreur lors de la création');
       setSubmitted(true);
       toast.success('Contrat créé !');
+      // Génération et téléchargement du PDF
+      const pdfRes = await fetch('/api/generate-pdf', {
+        method: 'POST',
+        headers: { 'Content-Type': 'application/json' },
+        body: JSON.stringify({
+          type: 'contrat',
+          data: {
+            nom: user?.lastName || '',
+            prenom: user?.firstName || '',
+            dateDebut: new Date().toISOString().slice(0, 10),
+            poste: type
+          }
+        })
+      });
+      if (pdfRes.ok) {
+        const blob = await pdfRes.blob();
+        const url = window.URL.createObjectURL(blob);
+        const a = document.createElement('a');
+        a.href = url;
+        a.download = 'contrat.pdf';
+        a.click();
+        window.URL.revokeObjectURL(url);
+      }
     } catch (err) {
       setError('Erreur lors de la création du contrat');
       toast.error('Erreur lors de la création du contrat');
