@@ -27,13 +27,14 @@ export default function NavBar() {
           </button>
           {showCFA && (
             <div className="absolute left-0 top-full mt-2 w-60 bg-white rounded-2xl shadow-2xl p-4 flex flex-col gap-2 z-50 border border-[#E9F0FF]">
-              <Link href="#apprentissage" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Apprentissage</Link>
-              <Link href="#professionnalisation" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Professionnalisation</Link>
-              <Link href="#stage" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Stage</Link>
-              <Link href="#facturation" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Facturation</Link>
-              <Link href="#cerfa-p2s" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Cerfa P2S</Link>
-              <Link href="#cerfa-proa" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Cerfa Pro-A</Link>
-              <Link href="#recuperation-opco" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Récupération sommes OPCO</Link>
+              <Link href="/apprentissage" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Apprentissage</Link>
+              <Link href="/professionnalisation" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Professionnalisation</Link>
+              <Link href="/stage" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Stage</Link>
+              <Link href="/facturation" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Facturation</Link>
+              <Link href="/cerfa-p2s" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Cerfa P2S</Link>
+              <Link href="/cerfa-proa" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Cerfa Pro-A</Link>
+              <Link href="/recuperation-sommes" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">Récupération sommes</Link>
+              <Link href="/opco" className="font-medium text-[#555] hover:text-[#2F5FDE] transition text-base">OPCO</Link>
             </div>
           )}
         </div>
