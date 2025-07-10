@@ -4,12 +4,14 @@ import Image from 'next/image';
 
 export default function NavBar() {
   return (
-    <nav className="fixed top-6 left-1/2 transform -translate-x-1/2 w-[90vw] max-w-5xl bg-white rounded-2xl shadow-xl flex items-center justify-between px-8 py-3 z-50 border border-[#E9F0FF]">
-      <div className="flex items-center gap-4">
+    <nav className="fixed top-6 left-1/2 -translate-x-1/2 w-[92vw] max-w-5xl bg-white rounded-2xl shadow-xl flex items-center justify-between px-10 py-3 z-50 border border-[#E9F0FF]">
+      <div className="flex items-center gap-3">
         <Link href="/">
-          <Image src="/logo-xcfa.png" alt="Logo XCFA" width={40} height={40} className="rounded" />
+          <div className="w-12 h-12 flex items-center justify-center bg-white rounded-xl shadow">
+            <Image src="/logo-xcfa.png" alt="Logo XCFA" width={40} height={40} />
+          </div>
         </Link>
-        <span className="text-2xl font-extrabold text-[#2F5FDE] tracking-tight">XCFA</span>
+        <span className="text-3xl font-extrabold text-[#2F5FDE] tracking-tight ml-2">XCFA</span>
       </div>
       <div className="flex items-center gap-8 ml-8">
         <Link href="/" className="text-[#2F5FDE] font-semibold hover:text-[#1e3a8a] transition">Accueil</Link>
