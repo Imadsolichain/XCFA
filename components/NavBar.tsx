@@ -4,6 +4,7 @@ import Link from 'next/link';
 export default function NavBar() {
   const [showRessources, setShowRessources] = useState(false);
   const [showTarifs, setShowTarifs] = useState(false);
+  const [showCFA, setShowCFA] = useState(false);
 
   return (
     <nav className="fixed top-10 left-1/2 -translate-x-1/2 w-[92vw] max-w-5xl bg-white rounded-3xl shadow-2xl flex items-center justify-between px-12 py-4 z-50 border border-[#E9F0FF]">
@@ -12,6 +13,24 @@ export default function NavBar() {
       </div>
       <div className="flex items-center gap-10 ml-8 relative">
         <Link href="/" className="text-[#2F5FDE] font-semibold hover:text-[#1e3a8a] transition text-lg">Accueil</Link>
+        <button
+          className="text-[#2F5FDE] font-semibold hover:text-[#1e3a8a] transition text-lg relative"
+          onMouseEnter={() => setShowCFA(true)}
+          onMouseLeave={() => setShowCFA(false)}
+        >
+          CFA <span className="ml-1">▾</span>
+          {showCFA && (
+            <div className="absolute left-1/2 -translate-x-1/2 mt-4 w-72 bg-white rounded-2xl shadow-2xl p-6 flex flex-col gap-4 z-50 border border-[#E9F0FF]">
+              <Link href="#apprentissage" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Apprentissage</Link>
+              <Link href="#professionnalisation" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Professionnalisation</Link>
+              <Link href="#stage" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Stage</Link>
+              <Link href="#facturation" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Facturation</Link>
+              <Link href="#cerfa-p2s" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Cerfa P2S</Link>
+              <Link href="#cerfa-proa" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Cerfa Pro-A</Link>
+              <Link href="#recuperation-opco" className="font-semibold text-[#555] hover:text-[#2F5FDE] transition text-lg">Récupération sommes OPCO</Link>
+            </div>
+          )}
+        </button>
         <button
           className="text-[#2F5FDE] font-semibold hover:text-[#1e3a8a] transition text-lg relative"
           onMouseEnter={() => setShowTarifs(true)}
