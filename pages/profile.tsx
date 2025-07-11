@@ -1,5 +1,6 @@
 import React from 'react';
 import Layout from '../components/Layout';
+import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 
 function SectionEtudiant({ user }: { user: any }) {
   return (
@@ -39,11 +40,18 @@ function SectionAdmin({ user }: { user: any }) {
 
 export default function ProfilePage() {
   return (
-    <Layout title="Profil">
-      <div className="max-w-2xl mx-auto flex flex-col items-center mt-10">
-        <h2 className="text-2xl font-bold text-[#2F5FDE] mt-4 mb-6">Mon profil (auth désactivée)</h2>
-        <div className="text-gray-600">Clerk désactivé pour test. Aucune donnée utilisateur affichée.</div>
-      </div>
-    </Layout>
+    <>
+      <SignedIn>
+        <Layout title="Profil">
+          <div className="max-w-2xl mx-auto flex flex-col items-center mt-10">
+            <h2 className="text-2xl font-bold text-[#2F5FDE] mt-4 mb-6">Mon profil</h2>
+            {/* Affichage des infos utilisateur ici */}
+          </div>
+        </Layout>
+      </SignedIn>
+      <SignedOut>
+        <RedirectToSignIn />
+      </SignedOut>
+    </>
   );
 } 

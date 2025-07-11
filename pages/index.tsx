@@ -2,6 +2,15 @@ import React from 'react';
 import Link from 'next/link';
 import Image from 'next/image';
 
+const navLinks = [
+  { label: 'Accueil', href: '/' },
+  { label: 'CFA', href: null },
+  { label: 'Entreprise', href: null },
+  { label: 'Tarifs', href: '#tarifs' },
+  { label: 'Ressources', href: null },
+  { label: 'Contact', href: null },
+];
+
 export default function HomePage() {
   return (
     <div className="min-h-screen bg-gradient-to-br from-[#E9F0FF] via-[#F4F6F8] to-[#F4F6F8] flex flex-col">
@@ -9,15 +18,14 @@ export default function HomePage() {
       <header className="w-full flex items-center justify-between px-6 md:px-12 py-6 bg-white/90 shadow-sm rounded-b-3xl sticky top-0 z-30">
         <div className="flex items-center gap-4">
           <Image src="/logo-xcfa.png" alt="Logo XCFA" width={48} height={48} />
-          <span className="text-2xl font-extrabold text-[#2F5FDE] tracking-tight">filiz</span>
+          <span className="text-2xl font-extrabold text-[#2F5FDE] tracking-tight">XCFA</span>
         </div>
         <nav className="hidden md:flex items-center gap-8 text-[#333] font-medium">
-          <Link href="/" className="hover:text-[#2F5FDE] transition-colors">Accueil</Link>
-          <Link href="#" className="hover:text-[#2F5FDE] transition-colors">CFA</Link>
-          <Link href="#" className="hover:text-[#2F5FDE] transition-colors">Entreprise</Link>
-          <Link href="#tarifs" className="hover:text-[#2F5FDE] transition-colors">Tarifs</Link>
-          <Link href="#" className="hover:text-[#2F5FDE] transition-colors">Ressources</Link>
-          <Link href="#" className="hover:text-[#2F5FDE] transition-colors">Contact</Link>
+          {navLinks.map(link => link.href ? (
+            <Link key={link.label} href={link.href} className="hover:text-[#2F5FDE] transition-colors">{link.label}</Link>
+          ) : (
+            <span key={link.label} className="text-gray-400 cursor-not-allowed" aria-disabled="true">{link.label}</span>
+          ))}
         </nav>
         <div className="flex items-center gap-2 md:gap-4">
           <Link href="/sign-up" className="px-5 py-2 rounded-xl border border-[#2F5FDE] text-[#2F5FDE] font-semibold bg-white hover:bg-[#E9F0FF] active:bg-[#E9F0FF] transition-colors shadow-sm">S'inscrire</Link>
@@ -51,7 +59,7 @@ export default function HomePage() {
       </main>
       {/* Footer (optionnel) */}
       <footer className="w-full py-6 bg-white/80 border-t border-[#E9F0FF] text-center text-sm text-[#333] rounded-t-3xl shadow-inner">
-        © {new Date().getFullYear()} filiz — Plateforme pour CFA & centres de formation
+        © {new Date().getFullYear()} XCFA — Plateforme pour CFA & centres de formation
       </footer>
     </div>
   );
