@@ -1,16 +1,10 @@
-import { SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 import Layout from '../components/Layout';
 
 export default function ProtectedPage() {
   return (
     <Layout title="Protected">
-      <SignedIn>
-        <h1>Page protégée</h1>
-        <p>Vous êtes connecté et pouvez voir ce contenu.</p>
-      </SignedIn>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
+      <h1>Page protégée (auth désactivée)</h1>
+      <p>Vous êtes sur une page qui nécessitait l'authentification, mais Clerk est désactivé pour test.</p>
     </Layout>
   );
 } 

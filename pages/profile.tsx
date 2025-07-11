@@ -1,6 +1,5 @@
 import React from 'react';
 import Layout from '../components/Layout';
-import { useUser, UserButton, SignedIn, SignedOut, RedirectToSignIn } from '@clerk/nextjs';
 
 function SectionEtudiant({ user }: { user: any }) {
   return (
@@ -39,24 +38,12 @@ function SectionAdmin({ user }: { user: any }) {
 }
 
 export default function ProfilePage() {
-  const { user } = useUser();
-  const role = user?.publicMetadata?.role as string;
   return (
     <Layout title="Profil">
-      <SignedIn>
-        <div className="max-w-2xl mx-auto flex flex-col items-center mt-10">
-          <UserButton afterSignOutUrl="/login" />
-          <h2 className="text-2xl font-bold text-[#2F5FDE] mt-4 mb-6">Mon profil</h2>
-          {role === 'APPRENANT' && <SectionEtudiant user={user} />}
-          {role === 'ECOLE' && <SectionEcole user={user} />}
-          {role === 'ADMIN' && <SectionAdmin user={user} />}
-          {!role && <div className="text-red-600">Aucun rôle défini pour cet utilisateur.</div>}
-          <button onClick={() => window.location.href = '/login'} className="mt-6 bg-[#EF4444] text-white px-6 py-2 rounded-lg font-semibold shadow hover:bg-red-700 transition-all duration-200">Se déconnecter</button>
-        </div>
-      </SignedIn>
-      <SignedOut>
-        <RedirectToSignIn />
-      </SignedOut>
+      <div className="max-w-2xl mx-auto flex flex-col items-center mt-10">
+        <h2 className="text-2xl font-bold text-[#2F5FDE] mt-4 mb-6">Mon profil (auth désactivée)</h2>
+        <div className="text-gray-600">Clerk désactivé pour test. Aucune donnée utilisateur affichée.</div>
+      </div>
     </Layout>
   );
 } 

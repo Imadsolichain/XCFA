@@ -1,5 +1,3 @@
-import { SignUp } from '@clerk/nextjs';
-
 export default function SignUpPage() {
-  return <SignUp path="/sign-up" routing="path" signInUrl="/sign-in" />;
+  return <div>Inscription désactivée (Clerk retiré pour test)</div>;
 } 

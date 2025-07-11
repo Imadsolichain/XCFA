@@ -54,6 +54,7 @@ model Contrat {
   statut    String
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
+  factures  Facture[]
 }
 
 model Convention {
@@ -81,6 +82,16 @@ model Notification {
   lu        Boolean  @default(false)
   createdAt DateTime @default(now())
   user      User     @relation(fields: [userId], references: [id])
+}
+
+model Facture {
+  id         String   @id @default(cuid())
+  contratId  String
+  numero     String
+  date       DateTime @default(now())
+  montant    Float
+  statut     String   @default("en attente")
+  contrat    Contrat  @relation(fields: [contratId], references: [id])
 }
 
 enum Role {

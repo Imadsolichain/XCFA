@@ -5,7 +5,8 @@
     "build": "prisma migrate deploy && next build",
     "start": "next start",
     "type-check": "tsc",
-    "postinstall": "prisma generate"
+    "postinstall": "prisma generate",
+    "test:e2e": "playwright test"
   },
   "dependencies": {
     "@clerk/clerk-sdk-node": "^4.13.23",
@@ -23,6 +24,7 @@
     "react-hot-toast": "^2.5.2"
   },
   "devDependencies": {
+    "@playwright/test": "^1.54.0",
     "@types/jest": "^30.0.0",
     "@types/node": "12.20.55",
     "@types/puppeteer": "^5.4.7",

@@ -1,12 +1,10 @@
 import React, { useState } from 'react';
 import Link from 'next/link';
-import { useUser, UserButton } from '@clerk/nextjs';
 
 export default function NavBar() {
   const [showRessources, setShowRessources] = useState(false);
   const [showTarifs, setShowTarifs] = useState(false);
   const [showCFA, setShowCFA] = useState(false);
-  const { user } = useUser();
 
   return (
     <nav className="fixed top-10 left-64 w-[calc(100vw-16rem-3vw)] max-w-5xl bg-white rounded-3xl shadow-2xl flex items-center justify-between px-10 py-3 z-50 border border-[#E9F0FF]">
@@ -73,7 +71,7 @@ export default function NavBar() {
         </div>
         <Link href="/contact" className="text-[#2F5FDE] font-medium hover:text-[#1e3a8a] transition text-base">Contact</Link>
       </div>
-      <div className="flex items-center gap-3">
+      {/* <div className="flex items-center gap-3">
         {!user ? (
           <>
             <Link href="/sign-up" className="px-5 py-2 rounded-xl bg-[#E9F0FF] text-[#2F5FDE] font-semibold hover:bg-[#2F5FDE] hover:text-white transition text-base">S'inscrire</Link>
@@ -82,7 +80,7 @@ export default function NavBar() {
         ) : (
           <UserButton afterSignOutUrl="/login" />
         )}
-      </div>
+      </div> */}
     </nav>
   );
 } 

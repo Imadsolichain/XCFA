@@ -1,11 +1,9 @@
 import React, { useState } from 'react';
-import { useUser } from '@clerk/nextjs';
 import { useRouter } from 'next/router';
 import { toast } from 'react-hot-toast';
 import Layout from '../../components/Layout';
 
 export default function NouvelleConventionPage() {
-  const { user } = useUser();
   const [submitted, setSubmitted] = useState(false);
   const [error, setError] = useState('');
   const router = useRouter();
@@ -19,7 +17,7 @@ export default function NouvelleConventionPage() {
       const res = await fetch('/api/conventions', {
         method: 'POST',
         headers: { 'Content-Type': 'application/json' },
-        body: JSON.stringify({ userId: user?.id, sujet, statut: 'brouillon' }),
+        body: JSON.stringify({ userId: 'mock', sujet, statut: 'brouillon' }),
       });
       if (!res.ok) throw new Error('Erreur lors de la création');
       setSubmitted(true);
