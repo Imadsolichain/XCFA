@@ -29,7 +29,7 @@ export default function HomePage() {
         </nav>
         <div className="flex items-center gap-2 md:gap-4">
           <Link href="/sign-up" className="px-5 py-2 rounded-xl border border-[#2F5FDE] text-[#2F5FDE] font-semibold bg-white hover:bg-[#E9F0FF] active:bg-[#E9F0FF] transition-colors shadow-sm">S'inscrire</Link>
-          <Link href="/login" className="px-5 py-2 rounded-xl bg-[#2F5FDE] text-white font-semibold hover:bg-[#1e3a8a] active:bg-[#1e3a8a] transition-colors shadow">Se connecter</Link>
+          <Link href="/sign-in" className="px-5 py-2 rounded-xl bg-[#2F5FDE] text-white font-semibold hover:bg-[#1e3a8a] active:bg-[#1e3a8a] transition-colors shadow">Se connecter</Link>
         </div>
       </header>
       {/* Hero section */}
